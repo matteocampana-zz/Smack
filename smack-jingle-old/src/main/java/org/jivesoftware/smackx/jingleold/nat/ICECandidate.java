@@ -48,6 +48,20 @@ public class ICECandidate extends TransportCandidate implements Comparable<ICECa
 
     private Type type;
 
+    private String foundation;
+
+    private int priority;
+
+    private int component;
+
+    private String rel_ip;
+
+    private int rel_port;
+
+    private int network_cost;
+
+
+
     public enum Type {
         relay, srflx, prflx, local, host
     }
@@ -104,6 +118,60 @@ public class ICECandidate extends TransportCandidate implements Comparable<ICECa
     }
 
     /**
+     * Get the foundation.
+     *
+     * @return the foundation
+     */
+    public String getFoundation() {
+        return foundation;
+    }
+
+    /**
+     * Set the foundation.
+     *
+     * @param foundation the foundation to set
+     */
+    public void setFoundation(String foundation) {
+        this.foundation = foundation;
+    }
+
+    /**
+     * Get the related ip.
+     *
+     * @return the related ip.
+     */
+    public String getRel_ip() {
+        return rel_ip;
+    }
+
+    /**
+     * Set the related ip.
+     *
+     * @param rel_ip the related ip to set
+     */
+    public void setRel_ip(String rel_ip) {
+        this.rel_ip = rel_ip;
+    }
+
+    /**
+     * Get the related port.
+     *
+     * @return the related port.
+     */
+    public int getRel_port() {
+        return rel_port;
+    }
+
+    /**
+     * Set the related port.
+     *
+     * @param rel_port the related port to set
+     */
+    public void setRel_port(int rel_port) {
+        this.rel_port = rel_port;
+    }
+
+    /**
      * Get the protocol used for the transmission.
      *
      * @return the protocol used for transmission
@@ -129,6 +197,22 @@ public class ICECandidate extends TransportCandidate implements Comparable<ICECa
     public int getNetwork() {
         return network;
     }
+
+    /**
+     * Set the network cost for this connection.
+     *
+     * @param network_cost the network cost
+     */
+    public void setNetwork_cost(int network_cost) {
+        this.network_cost = network_cost;
+    }
+
+    /**
+     * Get the network cost for this connection.
+     *
+     * @return the network cost number
+     */
+    public int getNetwork_cost() { return network_cost; }
 
     /**
      * Set the interface for this connection.
@@ -192,6 +276,44 @@ public class ICECandidate extends TransportCandidate implements Comparable<ICECa
      */
     public void setPreference(int preference) {
         this.preference = preference;
+    }
+
+    /**
+     * Get the priority for this transportElement.
+     *
+     * @return the priority for this transportElement
+     */
+    public int getPriority() {
+        return priority;
+    }
+
+    /**
+     * Set the priority order for this transportElement.
+     *
+     * @param priority a number identifying the priority (as defined in
+     *                   ICE)
+     */
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * Get the component id for this transportElement.
+     *
+     * @return the component id for this transportElement
+     */
+    public int getComponent() {
+        return component;
+    }
+
+    /**
+     * Set the component id for this transportElement.
+     *
+     * @param component id a number identifying the component id (as defined in
+     *                   ICE)
+     */
+    public void setComponent(int component) {
+        this.component = component;
     }
 
     /**
@@ -328,6 +450,9 @@ public class ICECandidate extends TransportCandidate implements Comparable<ICECa
         if (getNetwork() != other.getNetwork()) {
             return false;
         }
+        if (getNetwork_cost() != other.getNetwork_cost()) {
+            return false;
+        }
         if (getPassword() == null) {
             if (other.getPassword() != null) {
                 return false;
@@ -336,7 +461,32 @@ public class ICECandidate extends TransportCandidate implements Comparable<ICECa
         else if (!getPassword().equals(other.password)) {
             return false;
         }
+        if (getFoundation() == null) {
+            if (other.getFoundation() != null) {
+                return false;
+            }
+        }
+        else if (!getFoundation().equals(other.foundation)) {
+            return false;
+        }
+        if (getRel_ip() == null) {
+            if (other.getRel_ip() != null) {
+                return false;
+            }
+        }
+        else if (!getRel_ip().equals(other.getRel_ip())) {
+            return false;
+        }
         if (getPreference() != other.getPreference()) {
+            return false;
+        }
+        if (getPriority() != other.getPriority()) {
+            return false;
+        }
+        if (getComponent() != other.getComponent()) {
+            return false;
+        }
+        if (getRel_port() != other.getRel_port()) {
             return false;
         }
         if (getProto() == null) {
@@ -387,13 +537,19 @@ public class ICECandidate extends TransportCandidate implements Comparable<ICECa
         res = 37 * res + (getChannel() == null ? 0 : getChannel().hashCode());
         res = 37 * res + (getId() == null ? 0 : getId().hashCode());
         res = 37 * res + getNetwork();
+        res = 37 * res + getNetwork_cost();
         res = 37 * res + (getPassword() == null ? 0 : getPassword().hashCode());
         res = 37 * res + getPreference();
+        res = 37 * res + getPriority();
+        res = 37 * res + getComponent();
         res = 37 * res + (getProto() == null ? 0 : getProto().hashCode());
         res = 37 * res + (getUsername() == null ? 0 : getUsername().hashCode());
         res = 37 * res + (getIp() == null ? 0 : getIp().hashCode());
         res = 37 * res + getPort();
         res = 37 * res + (getType() == null ? 0 : getType().hashCode());
+        res = 37 * res + (getFoundation() == null ? 0 : getFoundation().hashCode());
+        res = 37 * res + (getRel_ip() == null ? 0 : getRel_ip().hashCode());
+        res = 37 * res + getRel_port();
         return res;
     }
 

@@ -330,14 +330,24 @@ public class JingleTransport implements ExtensionElement {
                     ICECandidate tci = (ICECandidate) transportCandidate;
 
                     // We convert the transportElement candidate to XML here...
+                    buf.append(" id=\"").append(tci.getId()).append('"');
+                    buf.append(" component=\"").append(tci.getComponent()).append('"');
+                    buf.append(" foundation=\"").append(tci.getFoundation()).append('"');
                     buf.append(" generation=\"").append(tci.getGeneration()).append('"');
                     buf.append(" ip=\"").append(tci.getIp()).append('"');
                     buf.append(" port=\"").append(tci.getPort()).append('"');
+                    buf.append(" rel-addr=\"").append(tci.getRel_ip()).append('"');
+                    buf.append(" rel-port=\"").append(tci.getRel_port()).append('"');
                     buf.append(" network=\"").append(tci.getNetwork()).append('"');
+                    buf.append(" network-cost=\"").append(tci.getNetwork_cost()).append('"');
                     buf.append(" username=\"").append(tci.getUsername()).append('"');
                     buf.append(" password=\"").append(tci.getPassword()).append('"');
                     buf.append(" preference=\"").append(tci.getPreference()).append('"');
+                    buf.append(" priority=\"").append(tci.getPriority()).append('"');
+                    buf.append(" protocol=\"").append(tci.getProto()).append('"');
                     buf.append(" type=\"").append(tci.getType()).append('"');
+
+
 
                     // Optional elements
                     if (transportCandidate.getName() != null) {

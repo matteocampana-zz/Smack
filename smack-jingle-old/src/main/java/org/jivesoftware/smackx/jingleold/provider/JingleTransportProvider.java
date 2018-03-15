@@ -125,8 +125,52 @@ public abstract class JingleTransportProvider extends ExtensionElementProvider<J
             String password = parser.getAttributeValue("", "password");
             String port = parser.getAttributeValue("", "port");
             String preference = parser.getAttributeValue("", "preference");
-            String proto = parser.getAttributeValue("", "proto");
+            String proto = parser.getAttributeValue("", "protocol");
             String type = parser.getAttributeValue("", "type");
+            String component = parser.getAttributeValue("", "component");
+            String foundation = parser.getAttributeValue("", "foundation");
+            String priority = parser.getAttributeValue("", "priority");
+            String relIp = parser.getAttributeValue("", "rel-addr");
+            String relPort = parser.getAttributeValue("", "rel-port");
+            String network_cost = parser.getAttributeValue("", "network-cost");
+            String id = parser.getAttributeValue("", "id");
+
+
+            if (relPort != null) {
+                try {
+                    mt.setRel_port(Integer.parseInt(relPort));
+                }
+                catch (Exception e) {
+                }
+            }
+
+            if (id != null) {
+                mt.setId(id);
+            }
+
+            if (relIp != null) {
+                mt.setRel_ip(relIp);
+            }
+
+            if (component != null) {
+                try {
+                    mt.setComponent(Integer.parseInt(component));
+                }
+                catch (Exception e) {
+                }
+            }
+
+            if (foundation != null) {
+                mt.setFoundation(foundation);
+            }
+
+            if (priority != null) {
+                try {
+                    mt.setPriority(Integer.parseInt(priority));
+                }
+                catch (Exception e) {
+                }
+            }
 
             if (channel != null) {
                 mt.setChannel(new TransportCandidate.Channel(channel));
@@ -154,6 +198,14 @@ public abstract class JingleTransportProvider extends ExtensionElementProvider<J
             if (network != null) {
                 try {
                     mt.setNetwork(Integer.parseInt(network));
+                }
+                catch (Exception e) {
+                }
+            }
+
+            if (network_cost != null) {
+                try {
+                    mt.setNetwork_cost(Integer.parseInt(network_cost));
                 }
                 catch (Exception e) {
                 }
